@@ -92,7 +92,7 @@ const filters = ['All Work', 'Featured', 'Infrastructure', 'Full Stack'];
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All Work');
-  const [selectedProject, setSelectedProject] = useState(null);
+  // const [selectedProject, setSelectedProject] = useState(null);
 
   const filteredWorks = works.filter((work) => {
     if (activeFilter === 'All Work') return true;
@@ -156,7 +156,7 @@ export default function Projects() {
               >
                 <div
                   className="group cursor-pointer"
-                  onClick={() => setSelectedProject(work)}
+                  // onClick={() => setSelectedProject(work)}
                 >
                   <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-white/5 to-transparent border border-white/10">
                     <Image

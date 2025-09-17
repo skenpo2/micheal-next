@@ -38,7 +38,7 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -55,7 +55,7 @@ export default function Contact() {
     }, 3000);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setFormState((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
