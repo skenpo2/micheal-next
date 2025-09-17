@@ -2,148 +2,150 @@
 
 import { useState } from 'react';
 
-const skillCategories = [
+const domains = [
   {
-    name: 'Frontend',
-    skills: [
-      { name: 'React', level: 95 },
-      { name: 'Next.js', level: 90 },
-      { name: 'TypeScript', level: 85 },
-      { name: 'Tailwind CSS', level: 90 },
-      { name: 'JavaScript', level: 95 },
-      { name: 'HTML5', level: 98 },
-      { name: 'CSS3', level: 90 },
-      { name: 'Vue.js', level: 75 },
+    title: 'Interface',
+    essence: 'Where users meet technology',
+    tools: [
+      'React',
+      'Next.js',
+      'TypeScript',
+      'Tailwind',
+      'Framer Motion',
+      'Three.js',
     ],
   },
   {
-    name: 'Backend',
-    skills: [
-      { name: 'Node.js', level: 90 },
-      { name: 'Python', level: 80 },
-      { name: 'Express.js', level: 85 },
-      { name: 'MongoDB', level: 80 },
-      { name: 'PostgreSQL', level: 75 },
-      { name: 'GraphQL', level: 70 },
-      { name: 'REST APIs', level: 90 },
-      { name: 'Django', level: 65 },
+    title: 'Architecture',
+    essence: 'Systems that think ahead',
+    tools: [
+      'Node.js',
+      'Python',
+      'PostgreSQL',
+      'GraphQL',
+      'Microservices',
+      'Redis',
     ],
   },
   {
-    name: 'Tools & Others',
-    skills: [
-      { name: 'Git', level: 95 },
-      { name: 'Docker', level: 70 },
-      { name: 'AWS', level: 65 },
-      { name: 'Firebase', level: 80 },
-      { name: 'Figma', level: 75 },
-      { name: 'Jest', level: 80 },
-      { name: 'Webpack', level: 70 },
-      { name: 'Linux', level: 75 },
+    title: 'Infrastructure',
+    essence: 'Foundation for scale',
+    tools: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'CI/CD', 'Monitoring'],
+  },
+  {
+    title: 'Craft',
+    essence: 'How good software happens',
+    tools: [
+      'Git',
+      'Testing',
+      'Code Review',
+      'Documentation',
+      'Performance',
+      'Security',
     ],
   },
-];
-
-const techStack = [
-  'React',
-  'Next.js',
-  'TypeScript',
-  'Node.js',
-  'Python',
-  'MongoDB',
-  'PostgreSQL',
-  'Tailwind CSS',
-  'GraphQL',
-  'Docker',
-  'AWS',
-  'Git',
-  'Jest',
-  'Express.js',
 ];
 
 export default function Skills() {
-  const [activeCategory, setActiveCategory] = useState(0);
+  const [activeDomain, setActiveDomain] = useState(0);
 
   return (
     <section id="skills" className="section-padding">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Skills & <span className="gradient-text">Technologies</span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            A comprehensive toolkit for building modern web applications
+        {/* Soft Introduction */}
+        <div className="text-center mb-24">
+          <p className="text-sm font-light text-gray-500 uppercase tracking-[0.3em] mb-6">
+            What I Work With
           </p>
+          <h2 className="text-3xl md:text-4xl font-light mb-8 text-white/90 leading-relaxed">
+            Technology becomes invisible
+            <br />
+            when it{' '}
+            <span className="gradient-text font-normal">just works</span>
+          </h2>
         </div>
 
-        {/* Tech Stack Cloud */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-semibold text-center mb-8 text-white">
-            Tech Stack
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-            {techStack.map((tech, index) => (
-              <span
-                key={index}
-                className="px-6 py-3 glass-morphism rounded-full text-sm font-medium hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-default"
-                style={{
-                  animationDelay: `${index * 0.1}s`,
-                }}
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
+        {/* Domain Selector */}
+        <div className="flex flex-wrap justify-center gap-2 mb-20">
+          {domains.map((domain, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveDomain(index)}
+              className={`px-6 py-3 rounded-full text-sm font-light transition-all duration-500 ${
+                activeDomain === index
+                  ? 'bg-white/5 text-white border border-white/10'
+                  : 'text-gray-500 hover:text-gray-300'
+              }`}
+            >
+              {domain.title}
+            </button>
+          ))}
         </div>
 
-        {/* Skills Categories */}
-        <div className="max-w-6xl mx-auto">
-          {/* Category Tabs */}
-          <div className="flex justify-center mb-8">
-            <div className="glass-morphism rounded-lg p-1">
-              {skillCategories.map((category, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveCategory(index)}
-                  className={`px-6 py-3 rounded-md font-medium transition-all duration-300 ${
-                    activeCategory === index
-                      ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white'
-                      : 'text-gray-400 hover:text-white hover:bg-white/10'
-                  }`}
-                >
-                  {category.name}
-                </button>
-              ))}
-            </div>
+        {/* Active Domain */}
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h3 className="text-2xl font-light text-white mb-4">
+              {domains[activeDomain].title}
+            </h3>
+            <p className="text-gray-400 font-light text-lg italic">
+              {domains[activeDomain].essence}
+            </p>
           </div>
 
-          {/* Skills Grid */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {skillCategories[activeCategory].skills.map((skill, index) => (
+          {/* Tools Grid - Redesigned */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-20">
+            {domains[activeDomain].tools.map((tool, index) => (
               <div
                 key={index}
-                className="glass-morphism rounded-lg p-6 card-hover"
-                style={{
-                  animationDelay: `${index * 0.1}s`,
-                }}
+                className="group p-6 rounded-2xl bg-gradient-to-br from-white/[0.02] to-transparent border border-white/5 hover:border-white/10 hover:from-white/[0.03] transition-all duration-500 text-center"
               >
-                <div className="flex justify-between items-center mb-3">
-                  <span className="font-medium text-white">{skill.name}</span>
-                  <span className="text-primary-400 font-semibold">
-                    {skill.level}%
-                  </span>
+                <div className="relative mb-4">
+                  {/* Abstract visual element */}
+                  <div className="w-12 h-12 mx-auto relative">
+                    <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/10 to-white/5 group-hover:from-primary-500/20 group-hover:to-primary-400/10 transition-all duration-500"></div>
+                    <div className="absolute inset-2 rounded-md bg-white/5 group-hover:bg-primary-400/10 transition-all duration-500"></div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white/40 group-hover:bg-primary-400/80 transition-all duration-500"></div>
+                  </div>
                 </div>
-                <div className="w-full bg-dark-700 rounded-full h-2">
-                  <div
-                    className="bg-gradient-to-r from-primary-500 to-secondary-500 h-2 rounded-full transition-all duration-1000 ease-out"
-                    style={{
-                      width: `${skill.level}%`,
-                      animationDelay: `${index * 0.1 + 0.3}s`,
-                    }}
-                  ></div>
-                </div>
+
+                <h4 className="text-gray-300 font-light group-hover:text-white transition-colors duration-500">
+                  {tool}
+                </h4>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Approach Philosophy */}
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="space-y-8">
+            <div className="py-12 px-8 rounded-3xl bg-gradient-to-br from-white/[0.02] to-transparent border border-white/5">
+              <p className="text-lg font-light text-gray-300 leading-relaxed mb-8">
+                I believe the best technology disappears into the background,
+                enabling people to focus on what matters most to them.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                <div className="space-y-3">
+                  <p className="text-gray-500 font-light">Design Principles</p>
+                  <div className="space-y-2 text-gray-400">
+                    <p>Simplicity over complexity</p>
+                    <p>Performance by default</p>
+                    <p>Accessibility for everyone</p>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <p className="text-gray-500 font-light">Development Values</p>
+                  <div className="space-y-2 text-gray-400">
+                    <p>Code that tells stories</p>
+                    <p>Systems that adapt</p>
+                    <p>Solutions that endure</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

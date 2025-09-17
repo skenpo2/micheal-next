@@ -2,12 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, Code2 } from 'lucide-react';
 
 const navItems = [
-  { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Contact', href: '#contact' },
@@ -15,92 +12,108 @@ const navItems = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass-morphism shadow-lg' : 'bg-transparent'
+      className={`fixed top-0 w-full z-50 transition-all duration-700 ${
+        scrolled
+          ? 'bg-black/80 backdrop-blur-md border-b border-white/5'
+          : 'bg-transparent'
       }`}
     >
       <div className="container-custom px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="#home" className="flex items-center space-x-2 group">
-            <div className="relative">
-              <Code2 className="w-8 h-8 text-primary-500 group-hover:text-primary-400 transition-colors" />
-              <div className="absolute inset-0 bg-primary-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </div>
-            <span className="text-xl font-bold gradient-text">John Doe</span>
+          <Link
+            href="#home"
+            className="text-2xl font-bold text-white/90 hover:text-white transition-colors duration-500"
+          >
+            {'{ Micheal }'}
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-12">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-300 hover:text-white transition-colors duration-300 relative group"
+                className="relative text-sm font-light text-gray-400 hover:text-white transition-colors duration-500 group"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-2 left-1/2 w-0 h-px bg-white/60 transition-all duration-500 group-hover:w-full group-hover:left-0" />
               </Link>
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* Contact Button */}
           <div className="hidden md:block">
-            <Link href="#contact" className="btn-primary">
-              Get In Touch
+            <Link
+              href="#contact"
+              className="px-6 py-2 text-sm font-light text-gray-400 hover:text-white border border-white/10 hover:border-white/20 rounded-full transition-all duration-500"
+            >
+              Let's connect
             </Link>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Menu Toggle */}
           <button
-            onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg glass-morphism hover:bg-white/20 transition-colors"
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden relative w-6 h-5 flex flex-col justify-between group"
+            aria-label="Toggle menu"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <span
+              className={`w-full h-px bg-gray-400 group-hover:bg-white transition-all duration-500 ${
+                isOpen ? 'rotate-45 translate-y-2' : ''
+              }`}
+            />
+            <span
+              className={`w-full h-px bg-gray-400 group-hover:bg-white transition-all duration-300 ${
+                isOpen ? 'opacity-0' : ''
+              }`}
+            />
+            <span
+              className={`w-full h-px bg-gray-400 group-hover:bg-white transition-all duration-500 ${
+                isOpen ? '-rotate-45 -translate-y-2' : ''
+              }`}
+            />
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 glass-morphism border-t border-white/10">
-            <div className="px-4 py-6 space-y-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="block text-gray-300 hover:text-white transition-colors duration-300 py-2"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="pt-4 border-t border-white/10">
-                <Link
-                  href="#contact"
-                  className="btn-primary inline-block"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Get In Touch
-                </Link>
-              </div>
+        {/* Mobile Menu */}
+        <div
+          className={`md:hidden transition-all duration-500 ${
+            isOpen ? 'opacity-100 max-h-80' : 'opacity-0 max-h-0'
+          } overflow-hidden`}
+        >
+          <div className="py-8 space-y-6 border-t border-white/5">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="block text-lg font-light text-gray-400 hover:text-white transition-colors duration-500"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="pt-4">
+              <Link
+                href="#contact"
+                className="inline-block px-6 py-2 text-sm font-light text-gray-400 hover:text-white border border-white/10 hover:border-white/20 rounded-full transition-all duration-500"
+                onClick={() => setIsOpen(false)}
+              >
+                Let's connect
+              </Link>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );

@@ -2,252 +2,294 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { ExternalLink, Github, Filter } from 'lucide-react';
+import { ArrowUpRight, Github } from 'lucide-react';
 
-const projects = [
+const works = [
   {
-    id: 1,
-    title: 'E-Commerce Platform',
-    description:
-      'A full-stack e-commerce solution with advanced features like real-time inventory, payment processing, and admin dashboard.',
+    id: 'checkslate',
+    title: 'Checkslate',
+    subtitle:
+      'Skill-sharing escrow platform for booking and managing expert services securely.',
+    year: '2025',
+    scope: 'Full-Stack Development & Team Leadership',
+    challenge:
+      'Designing secure, scalable infrastructure with real-time features and multi-role access control.',
+    approach:
+      'Developed APIs with Express.js & MongoDB, integrated Paystack and Dojah, implemented JWT-based RBAC auth, real-time messaging, and performance optimizations with Redis and CDN.',
+    outcome:
+      'Delivered production-ready features, improved system reliability, and streamlined team collaboration with cross-functional stand-ups.',
     image:
-      'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
-    category: 'Full Stack',
-    technologies: ['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL', 'Prisma'],
-    github: 'https://github.com/johndoe/ecommerce-platform',
-    live: 'https://ecommerce-demo.johndoe.dev',
+      'https://res.cloudinary.com/dghp0dumz/image/upload/v1758077150/Screenshot_from_2025-09-17_03-42-51_a5wkmm.png',
+    stack: [
+      'React.js',
+      'Redux Toolkit',
+      'Tailwind CSS',
+      'Express.js',
+      'MongoDB',
+      'TypeScript',
+      'RabbitMq',
+      'Redis',
+      'AWS',
+    ],
+    links: {
+      github: 'https://github.com/skenpo2/check-staging',
+      live: 'https://checkslate-project.netlify.app/',
+    },
     featured: true,
   },
   {
-    id: 2,
-    title: 'Task Management App',
-    description:
-      'Collaborative task management application with real-time updates, team collaboration, and advanced filtering options.',
+    id: 'learnverrse',
+    title: 'Learnverrse',
+    subtitle: 'Learning Management System tailored to Nigeria’s edtech sector.',
+    year: '2025',
+    scope: 'Backend Development',
+    challenge:
+      'Building a scalable and secure backend for an MVP course management platform.',
+    approach:
+      'Designed modular APIs, integrated AWS S3 & CloudFront for media storage and delivery, and deployed services on AWS. Collaborated with frontend, cybersecurity, and design teams to align architecture with product goals.',
+    outcome:
+      'Delivered a functional backend MVP with secure content delivery and seamless course management features.',
     image:
-      'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop',
-    category: 'Frontend',
-    technologies: ['React', 'Redux', 'Socket.io', 'Material-UI'],
-    github: 'https://github.com/johndoe/task-manager',
-    live: 'https://taskflow.johndoe.dev',
+      'https://res.cloudinary.com/dghp0dumz/image/upload/v1758077150/Screenshot_from_2025-09-17_03-41-30_jsz7bh.png',
+    stack: ['Node.js', 'Express.js', 'AWS S3', 'CloudFront', 'MongoDB'],
+    links: {
+      github: 'https://github.com/skenpo2/learnverrse-staging',
+      live: 'https://learnverrse.github.io/learnverrse',
+    },
     featured: true,
   },
+
   {
-    id: 3,
-    title: 'Weather Analytics Dashboard',
-    description:
-      'Real-time weather analytics dashboard with interactive charts, forecasting, and location-based insights.',
+    id: 'portfolio',
+    title: 'Personal Portfolio Website',
+    subtitle: 'Next.js 15 developer portfolio',
+    year: '2025',
+    scope: 'Full Stack Web Development',
+    challenge:
+      'design and build my personal website to showcase projects, skills, and professional journey while ensuring performance and SEO optimization.',
+    approach:
+      'Implemented with Next.js 15 App Router, Tailwind CSS, and shadcn/ui. Integrated structured metadata, Open Graph previews, and responsive design with Framer Motion animations.',
+    outcome:
+      'Launched a modern, responsive portfolio that highlights software engineering, AI/ML journey, and projects with optimized performance and accessibility.',
     image:
-      'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop',
-    category: 'Frontend',
-    technologies: ['Vue.js', 'D3.js', 'Express.js', 'Weather API'],
-    github: 'https://github.com/johndoe/weather-dashboard',
-    live: 'https://weather.johndoe.dev',
-    featured: false,
-  },
-  {
-    id: 4,
-    title: 'Social Media API',
-    description:
-      'RESTful API for social media platform with authentication, post management, and real-time messaging capabilities.',
-    image:
-      'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop',
-    category: 'Backend',
-    technologies: ['Node.js', 'Express.js', 'MongoDB', 'JWT', 'Socket.io'],
-    github: 'https://github.com/johndoe/social-api',
-    live: 'https://api-social.johndoe.dev',
-    featured: false,
-  },
-  {
-    id: 5,
-    title: 'Portfolio Website',
-    description:
-      'Modern, responsive portfolio website built with the latest web technologies and optimized for performance.',
-    image:
-      'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop',
-    category: 'Frontend',
-    technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'TypeScript'],
-    github: 'https://github.com/johndoe/portfolio',
-    live: 'https://johndoe.dev',
+      'https://res.cloudinary.com/dghp0dumz/image/upload/v1758079877/Screenshot_from_2025-09-17_04-30-50_agbyik.png',
+    stack: [
+      'Next.js 15',
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Framer Motion',
+    ],
+    links: {
+      github: 'https://github.com/skenpo2/portfolio',
+      live: 'https://micheal-next.vercel.app/',
+    },
     featured: true,
-  },
-  {
-    id: 6,
-    title: 'Data Visualization Tool',
-    description:
-      'Interactive data visualization tool for business analytics with multiple chart types and export capabilities.',
-    image:
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
-    category: 'Full Stack',
-    technologies: ['React', 'Python', 'Flask', 'Chart.js', 'Pandas'],
-    github: 'https://github.com/johndoe/data-viz',
-    live: 'https://dataviz.johndoe.dev',
-    featured: false,
   },
 ];
 
-const categories = ['All', 'Full Stack', 'Frontend', 'Backend'];
+const filters = ['All Work', 'Featured', 'Infrastructure', 'Full Stack'];
 
 export default function Projects() {
-  const [activeCategory, setActiveCategory] = useState('All');
-  const [showAll, setShowAll] = useState(false);
+  const [activeFilter, setActiveFilter] = useState('All Work');
+  const [selectedProject, setSelectedProject] = useState(null);
 
-  const filteredProjects = projects.filter(
-    (project) => activeCategory === 'All' || project.category === activeCategory
-  );
-
-  const displayedProjects = showAll
-    ? filteredProjects
-    : filteredProjects.slice(0, 6);
+  const filteredWorks = works.filter((work) => {
+    if (activeFilter === 'All Work') return true;
+    if (activeFilter === 'Featured') return work.featured;
+    if (activeFilter === 'Infrastructure')
+      return work.scope.includes('Infrastructure');
+    if (activeFilter === 'Full Stack') return work.scope.includes('Full Stack');
+    return true;
+  });
 
   return (
     <section id="projects" className="section-padding">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Featured <span className="gradient-text">Projects</span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
-            A showcase of my recent work and personal projects
+        {/* Introduction */}
+        <div className="text-center mb-20">
+          <p className="text-sm font-light text-gray-500 uppercase tracking-[0.3em] mb-6">
+            Selected Work
           </p>
+          <h2 className="text-3xl md:text-4xl font-light mb-8 text-white/90 leading-relaxed max-w-4xl mx-auto">
+            Solutions that started as problems
+            <br />
+            worth <span className="gradient-text font-normal">solving</span>
+          </h2>
+        </div>
 
-          {/* Category Filter */}
-          <div className="flex justify-center">
-            <div className="glass-morphism rounded-lg p-1">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-4 py-2 rounded-md font-medium transition-all duration-300 ${
-                    activeCategory === category
-                      ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white'
-                      : 'text-gray-400 hover:text-white hover:bg-white/10'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
+        {/* Filter */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={`px-6 py-2 rounded-full text-sm font-light transition-all duration-500 ${
+                activeFilter === filter
+                  ? 'bg-white/5 text-white border border-white/10'
+                  : 'text-gray-500 hover:text-gray-300'
+              }`}
+            >
+              {filter}
+            </button>
+          ))}
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {displayedProjects.map((project, index) => (
+        <div className="space-y-16">
+          {filteredWorks.map((work, index) => (
             <div
-              key={project.id}
-              className={`glass-morphism rounded-xl overflow-hidden card-hover ${
-                project.featured ? 'md:col-span-2 lg:col-span-1' : ''
+              key={work.id}
+              className={`grid ${
+                work.featured ? 'lg:grid-cols-3' : 'lg:grid-cols-2'
+              } gap-12 items-center ${
+                index % 2 === 1 && !work.featured
+                  ? 'lg:grid-flow-col-dense'
+                  : ''
               }`}
-              style={{
-                animationDelay: `${index * 0.1}s`,
-              }}
             >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-300 hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              {/* Image */}
+              <div
+                className={`relative ${work.featured ? 'lg:col-span-2' : ''} ${
+                  index % 2 === 1 && !work.featured ? 'lg:order-2' : ''
+                }`}
+              >
+                <div
+                  className="group cursor-pointer"
+                  onClick={() => setSelectedProject(work)}
+                >
+                  <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-white/5 to-transparent border border-white/10">
+                    <Image
+                      src={work.image}
+                      alt={work.title}
+                      width={work.featured ? 800 : 600}
+                      height={work.featured ? 600 : 450}
+                      className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                {project.featured && (
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-gradient-to-r from-primary-500 to-secondary-500 text-white text-xs font-medium rounded-full">
-                      Featured
-                    </span>
+                    {work.featured && (
+                      <div className="absolute top-6 left-6">
+                        <span className="px-3 py-1 text-xs font-light rounded-full bg-white/10 text-white/80 backdrop-blur-sm border border-white/20">
+                          Featured
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                        <ArrowUpRight className="w-4 h-4 text-white" />
+                      </div>
+                    </div>
                   </div>
-                )}
-
-                {/* Overlay Links */}
-                <div className="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 glass-morphism rounded-full hover:bg-white/20 transition-colors"
-                  >
-                    <Github className="w-5 h-5" />
-                  </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 glass-morphism rounded-full hover:bg-white/20 transition-colors"
-                  >
-                    <ExternalLink className="w-5 h-5" />
-                  </a>
                 </div>
               </div>
 
-              {/* Project Content */}
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="px-3 py-1 text-xs font-medium bg-primary-500/20 text-primary-300 rounded-full">
-                    {project.category}
-                  </span>
+              {/* Content */}
+              <div
+                className={`space-y-6 ${
+                  work.featured ? '' : index % 2 === 1 ? 'lg:order-1' : ''
+                }`}
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center gap-4 text-sm">
+                    <span className="text-gray-500 font-light">
+                      {work.year}
+                    </span>
+                    <span className="w-px h-4 bg-white/20"></span>
+                    <span className="text-gray-400 font-light">
+                      {work.scope}
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl md:text-3xl font-light text-white">
+                    {work.title}
+                  </h3>
+
+                  <p className="text-gray-400 font-light text-lg">
+                    {work.subtitle}
+                  </p>
                 </div>
 
-                <h3 className="text-xl font-semibold text-white mb-3">
-                  {project.title}
-                </h3>
+                <div className="space-y-4 text-sm">
+                  <div>
+                    <span className="text-gray-500 font-light uppercase tracking-wider text-xs">
+                      Challenge
+                    </span>
+                    <p className="text-gray-300 font-light mt-1 leading-relaxed">
+                      {work.challenge}
+                    </p>
+                  </div>
 
-                <p className="text-gray-300 text-sm mb-4 line-clamp-3">
-                  {project.description}
-                </p>
+                  <div>
+                    <span className="text-gray-500 font-light uppercase tracking-wider text-xs">
+                      Solution
+                    </span>
+                    <p className="text-gray-300 font-light mt-1 leading-relaxed">
+                      {work.approach}
+                    </p>
+                  </div>
 
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, i) => (
+                  <div>
+                    <span className="text-gray-500 font-light uppercase tracking-wider text-xs">
+                      Impact
+                    </span>
+                    <p className="text-primary-400/80 font-light mt-1">
+                      {work.outcome}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {work.stack.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-2 py-1 text-xs glass-morphism rounded text-gray-400"
+                      className="px-3 py-1 text-xs font-light rounded-full bg-white/5 text-gray-500 border border-white/5"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Links */}
-                <div className="flex items-center gap-4">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-gray-400 hover:text-primary-400 transition-colors"
-                  >
-                    <Github className="w-4 h-4" />
-                    <span className="text-sm">Code</span>
-                  </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-gray-400 hover:text-primary-400 transition-colors"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    <span className="text-sm">Live Demo</span>
-                  </a>
+                <div className="flex items-center gap-6 pt-4">
+                  {work.links.github && (
+                    <a
+                      href={work.links.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300"
+                    >
+                      <Github className="w-4 h-4" />
+                      <span className="text-sm font-light">Code</span>
+                    </a>
+                  )}
+                  {work.links.live && (
+                    <a
+                      href={work.links.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300"
+                    >
+                      <ArrowUpRight className="w-4 h-4" />
+                      <span className="text-sm font-light">Live Demo</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Load More Button */}
-        {filteredProjects.length > 6 && (
-          <div className="text-center">
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="btn-secondary"
-            >
-              {showAll
-                ? 'Show Less'
-                : `Show More (${filteredProjects.length - 6} more)`}
-            </button>
+        {/* Philosophy */}
+        <div className="mt-24 text-center">
+          <div className="max-w-2xl mx-auto py-12 px-8 rounded-3xl bg-gradient-to-br from-white/[0.02] to-transparent border border-white/5">
+            <p className="text-lg font-light text-gray-300 leading-relaxed italic">
+              "Every project teaches something new about the balance between
+              what users need and what technology can deliver. The best
+              solutions feel inevitable in hindsight."
+            </p>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

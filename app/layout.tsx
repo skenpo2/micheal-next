@@ -11,27 +11,48 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'John Doe - Full Stack Developer',
+  title: 'Micheal Obarewon - Full Stack & Blockchain Developer',
   description:
-    'Professional web developer specializing in React, Next.js, and modern web technologies.',
-  keywords: ['web developer', 'react', 'nextjs', 'typescript', 'full stack'],
-  authors: [{ name: 'John Doe' }],
-  creator: 'John Doe',
+    'Full Stack Developer passionate about building scalable web applications, specializing in React, Next.js, Node.js, and Web3/blockchain technologies.',
+  keywords: [
+    'Micheal Obarewon',
+    'full stack developer',
+    'react',
+    'nextjs',
+    'typescript',
+    'nodejs',
+    'express',
+    'mongodb',
+    'web3',
+    'blockchain',
+    'software engineer',
+  ],
+  authors: [{ name: 'Micheal Obarewon' }],
+  creator: 'Micheal Obarewon',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://johndoe-dev.com',
-    siteName: 'John Doe - Developer Portfolio',
-    title: 'John Doe - Full Stack Developer',
+    url: 'https://michealobarewon.dev', // replace with your actual domain
+    siteName: 'Micheal Obarewon - Developer Portfolio',
+    title: 'Micheal Obarewon - Full Stack & Blockchain Developer',
     description:
-      'Professional web developer specializing in React, Next.js, and modern web technologies.',
+      'Full Stack Developer skilled in React, Next.js, Node.js, and Web3/blockchain. Passionate about building impactful and scalable solutions.',
+    images: [
+      {
+        url: 'https://michealobarewon.dev/og-image.png', // replace with your image
+        width: 1200,
+        height: 630,
+        alt: 'Micheal Obarewon Portfolio',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'John Doe - Full Stack Developer',
+    title: 'Micheal Obarewon - Full Stack & Blockchain Developer',
     description:
-      'Professional web developer specializing in React, Next.js, and modern web technologies.',
-    creator: '@johndoe',
+      'Portfolio of Micheal Obarewon, a full stack developer skilled in React, Next.js, Node.js, and blockchain technologies.',
+    creator: '@yourTwitterHandle', // replace with your actual Twitter/X handle
+    images: ['https://michealobarewon.dev/og-image.png'], // same as OG image
   },
   robots: {
     index: true,

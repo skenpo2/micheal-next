@@ -107,12 +107,28 @@
 
 /* ------------------------- */
 /* Component Layer           */
-/* ------------------------- */
 @layer components {
   .glass-morphism {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  /* Enhanced glass effect for mobile menu specifically */
+  .glass-morphism-mobile {
+    background: rgba(
+      15,
+      23,
+      42,
+      0.3
+    ); /* Much more transparent to see the blur effect */
+    backdrop-filter: blur(25px) saturate(180%) brightness(1.1);
+    -webkit-backdrop-filter: blur(25px) saturate(180%) brightness(1.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 -2px 20px 0 rgba(0, 0, 0, 0.2),
+      0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   .gradient-text {
@@ -184,5 +200,25 @@
   .backdrop-blur-custom {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+  }
+}
+@supports (backdrop-filter: blur(16px)) {
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-morphism-mobile {
+    background: rgba(15, 23, 42, 0.75);
+  }
+}
+
+/* Fallback for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur(16px)) {
+  .glass-morphism {
+    background: rgba(15, 23, 42, 0.95);
+  }
+
+  .glass-morphism-mobile {
+    background: rgba(15, 23, 42, 0.98);
   }
 }
