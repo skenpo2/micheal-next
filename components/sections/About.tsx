@@ -64,7 +64,7 @@ export default function About() {
                 <div className="w-full max-w-sm mx-auto">
                   <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-white/5 to-transparent border border-white/10">
                     <Image
-                      src="https://res.cloudinary.com/dghp0dumz/image/upload/v1757271754/about-removebg-preview_swwnyu.png"
+                      src="https://res.cloudinary.com/dghp0dumz/image/upload/v1758302293/IMG-20250919-WA0011_edu76a.jpg"
                       alt="Micheal Obarewon - Software Engineer & AI Enthusiast"
                       width={400}
                       height={400}
